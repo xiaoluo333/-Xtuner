@@ -181,9 +181,9 @@ def on_btn_click():
 
 @st.cache_resource
 def load_model():
-    model = (AutoModelForCausalLM.from_pretrained(trust_remote_code=True).to(
+    model = ('.',AutoModelForCausalLM.from_pretrained(trust_remote_code=True).to(
                                                       torch.bfloat16).cuda())
-    tokenizer = AutoTokenizer.from_pretrained(trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained('.',trust_remote_code=True)
     return model, tokenizer
 
 
