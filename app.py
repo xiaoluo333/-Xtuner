@@ -280,13 +280,13 @@ def main():
         })
         torch.cuda.empty_cache()
 
-# 拉取模型
-import os
-# download internlm2 to the base_path directory using git tool
-os.system(f'git clone https://code.openxlab.org.cn/xiaoxiaoluo/XTuner.git')
-os.system(f'cd XTuner && git lfs pull')
-os.system('pwd')
-os.system('ls -h ./XTuner')
+# # 拉取模型
+# import os
+# # download internlm2 to the base_path directory using git tool
+# os.system(f'git clone https://code.openxlab.org.cn/xiaoxiaoluo/XTuner.git')
+# os.system(f'cd XTuner && git lfs pull')
+# os.system('pwd')
+# os.system('ls -h ./XTuner')
 
 
 
