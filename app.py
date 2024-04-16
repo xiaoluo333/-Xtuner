@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """This script refers to the dialogue example of streamlit, the interactive
 generation code of chatglm2 and transformers.
 
@@ -24,7 +25,7 @@ import streamlit as st
 import torch
 from torch import nn
 from transformers.generation.utils import (LogitsProcessorList,
-                                           StoppingCriteriaList)
+StoppingCriteriaList)
 from transformers.utils import logging
 
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
@@ -51,7 +52,7 @@ def generate_interactive(
     logits_processor: Optional[LogitsProcessorList] = None,
     stopping_criteria: Optional[StoppingCriteriaList] = None,
     prefix_allowed_tokens_fn: Optional[Callable[[int, torch.Tensor],
-                                                List[int]]] = None,
+    List[int]]] = None,
     additional_eos_token_id: Optional[int] = None,
     **kwargs,
 ):
@@ -180,10 +181,10 @@ def on_btn_click():
 
 @st.cache_resource
 def load_model():
-    model = (AutoModelForCausalLM.from_pretrained('/root/ft/final_model',
+    model = (AutoModelForCausalLM.from_pretrained('/home/xlab-app-center/personal_assistant/final_model',
                                                   trust_remote_code=True).to(
                                                       torch.bfloat16).cuda())
-    tokenizer = AutoTokenizer.from_pretrained('/root/ft/final_model',
+    tokenizer = AutoTokenizer.from_pretrained('/home/xlab-app-center/personal_assistant/final_model',
                                               trust_remote_code=True)
     return model, tokenizer
 
@@ -278,6 +279,15 @@ def main():
             'content': cur_response,  # pylint: disable=undefined-loop-variable
         })
         torch.cuda.empty_cache()
+
+# 拉取模型
+import os
+# download internlm2 to the base_path directory using git tool
+os.system(f'git clone https://code.openxlab.org.cn/xiaoxiaoluo/XTuner.git')
+os.system(f'cd XTuner && git lfs pull')
+os.system('pwd')
+os.system('ls -h ./XTuner')
+
 
 
 if __name__ == '__main__':
