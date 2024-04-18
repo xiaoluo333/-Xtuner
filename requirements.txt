@@ -38,3 +38,4 @@ tiktoken
 einops
 oss2
 requests
+pathlib
