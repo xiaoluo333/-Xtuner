@@ -28,6 +28,7 @@ from transformers.generation.utils import (LogitsProcessorList,
 from transformers.utils import logging
 
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
+from pathlib import Path
 
 logger = logging.get_logger(__name__)
 
@@ -174,17 +175,13 @@ def generate_interactive(
             break
 
 
-def on_btn_click():
-    del st.session_state.messages
-
-
-@st.cache_resource
+@st.cache(allow_output_mutation=True)
 def load_model():
-    model = (AutoModelForCausalLM.from_pretrained('/root/ft/final_model',
-                                                  trust_remote_code=True).to(
-                                                      torch.bfloat16).cuda())
-    tokenizer = AutoTokenizer.from_pretrained('/root/ft/final_model',
-                                              trust_remote_code=True)
+    current_folder = Path(__file__).resolve().parent
+    model_path = current_folder
+    model = (AutoModelForCausalLM.from_pretrained(str(model_path),
+                                                  trust_remote_code=True).to(torch.bfloat16).cuda())
+    tokenizer = AutoTokenizer.from_pretrained(str(model_path), trust_remote_code=True)
     return model, tokenizer
 
 
