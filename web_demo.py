@@ -177,7 +177,7 @@ def generate_interactive(
 def on_btn_click():
     del st.session_state.messages
 
-@st.cache_resource(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
     current_folder = Path(__file__).resolve().parent
     model_path = current_folder / 'final_model'
