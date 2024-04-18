@@ -174,6 +174,8 @@ def generate_interactive(
                 input_ids, scores):
             break
 
+def on_btn_click():
+    del st.session_state.messages
 
 @st.cache(allow_output_mutation=True)
 def load_model():
